@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Hokkaido Summer 2026 | 極簡夏日北國小旅行</title>
+    
+    <!-- PWA & Mobile Web App Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="北海道慢旅">
+    <meta name="theme-color" content="#F5F5F7">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/emoji/192/lavender-emoji.png">
+
+    <!-- Dynamic Web App Manifest Injection -->
+    <script>
+        (function() {
+            const manifest = {
+                "name": "Hokkaido Summer 2026",
+                "short_name": "北海道慢旅",
+                "start_url": "./",
+                "display": "standalone",
+                "background_color": "#F5F5F7",
+                "theme_color": "#F5F5F7",
+                "icons": [
+                    {
+                        "src": "https://img.icons8.com/emoji/192/lavender-emoji.png",
+                        "sizes": "192x192",
+                        "type": "image/png"
+                    },
+                    {
+                        "src": "https://img.icons8.com/emoji/512/lavender-emoji.png",
+                        "sizes": "512x512",
+                        "type": "image/png"
+                    }
+                ]
+            };
+            const stringManifest = JSON.stringify(manifest);
+            const blob = new Blob([stringManifest], {type: 'application/json'});
+            const manifestURL = URL.createObjectURL(blob);
+            const link = document.createElement('link');
+            link.rel = 'manifest';
+            link.href = manifestURL;
+            document.head.appendChild(link);
+        })();
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            bg: '#F5F5F7',        // Apple 招牌極簡柔灰底色
+                            card: '#FFFFFF',      // 純白卡片
+                            subtle: '#E5E5EA',    // Apple 邊框分隔線
+                            text: '#1D1D1F',      // Apple 深灰內文
+                            secondary: '#86868B', // 次要灰字
+                            accent: '#0071E3',    // Apple 經典藍
+                            accentHover: '#0077ED',
+                            sage: '#5E6E56',      // 夏日北海道鼠尾草綠
+                            sageLight: '#F0F4EF',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'SF Pro Display', 'Inter', 'Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Noto Sans TC', sans-serif;
+            background-color: #F5F5F7;
+            color: #1D1D1F;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        /* Apple-style sleek scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D1D1D6;
+            border-radius: 99px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A1A1A6;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .apple-glass {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        /* Mobile Safe Area Padding */
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 1rem);
+        }
+        .pt-safe {
+            padding-top: env(safe-area-inset-top, 0rem);
+        }
+        /* Native App Touch Feedback */
+        .btn-touch {
+            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s ease;
+        }
+        .btn-touch:active {
+            transform: scale(0.96);
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-24 text-apple-text selection:bg-apple-accent/20">
+
+    <!-- Minimalist Apple Glass Nav Header -->
+    <nav class="apple-glass sticky top-0 z-40 border-b border-black/5 pt-safe">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14">
+                <div class="flex items-center space-x-2.5">
+                    <div class="w-7 h-7 rounded-full bg-apple-sage text-white flex items-center justify-center font-bold text-xs shadow-sm">
+                        <i data-lucide="compass" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold tracking-tight text-apple-text block">Hokkaido Summer '26</span>
+                        <span class="text-[10px] text-apple-secondary block tracking-wider uppercase">極簡北國慢旅 App</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <button onclick="togglePwaInstallGuide()" class="btn-touch hidden xs:flex items-center space-x-1 bg-apple-sageLight text-apple-sage border border-apple-sage/20 px-2.5 py-1.5 rounded-full text-xs font-medium">
+                        <i data-lucide="download-cloud" class="w-3.5 h-3.5"></i>
+                        <span class="text-[11px]">安裝 App</span>
+                    </button>
+                    <button onclick="shareItinerary()" class="btn-touch flex items-center space-x-1.5 bg-apple-text hover:bg-black text-white px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
+                        <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                        <span class="hidden sm:inline">複製分享</span>
+                    </button>
+                    <div id="countdown" class="bg-black/5 text-apple-text text-[11px] px-2.5 py-1 rounded-full font-mono font-medium border border-black/5 hidden sm:block">
+                        計時中...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PWA Install Guide Banner / Modal (iOS & Android) -->
+    <div id="pwa-install-modal" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-end sm:items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full space-y-4 shadow-2xl border border-black/5 animate-in fade-in slide-in-from-bottom-5">
+            <div class="flex justify-between items-start">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-2xl bg-apple-sage text-white flex items-center justify-center shadow-md">
+                        <i data-lucide="compass" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-apple-text">安裝至手機主畫面</h3>
+                        <p class="text-xs text-apple-secondary">像原生 App 一樣隨開即用</p>
+                    </div>
+                </div>
+                <button onclick="togglePwaInstallGuide()" class="p-1 rounded-full text-apple-secondary hover:bg-apple-bg">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3 pt-2 text-xs text-apple-text border-t border-black/5">
+                <div class="bg-apple-bg p-3 rounded-2xl space-y-1.5">
+                    <div class="font-bold flex items-center gap-1.5 text-apple-accent">
+                        <i data-lucide="apple" class="w-4 h-4"></i> iPhone (Safari)
+                    </div>
+                    <p class="text-[11px] text-apple-secondary leading-relaxed">
+                        點擊 Safari 底部工具列的 <i data-lucide="share" class="inline w-3.5 h-3.5 text-apple-accent"></i> <b>「分享」</b> 按鈕，選擇 <b>「加入主畫面 ➕」</b> 即可。
+                    </p>
+                </div>
+                <div class="bg-apple-bg p-3 rounded-2xl space-y-1.5">
+                    <div class="font-bold flex items-center gap-1.5 text-emerald-600">
+                        <i data-lucide="smartphone" class="w-4 h-4"></i> Android (Chrome)
+                    </div>
+                    <p class="text-[11px] text-apple-secondary leading-relaxed">
+                        點擊右上角 <i data-lucide="more-vertical" class="inline w-3.5 h-3.5"></i> <b>「選單」</b>，點選 <b>「新增至主畫面」</b> 或 <b>「安裝應用程式」</b>。
+                    </p>
+                </div>
+            </div>
+
+            <button onclick="togglePwaInstallGuide()" class="w-full btn-touch bg-apple-text text-white py-2.5 rounded-2xl text-xs font-semibold">
+                我知道了
+            </button>
+        </div>
+    </div>
+
+    <!-- Add Itinerary Item Modal -->
+    <div id="add-itinerary-modal" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-md w-full space-y-4 shadow-2xl border border-black/5 animate-in fade-in slide-in-from-bottom-5">
+            <div class="flex justify-between items-center pb-2 border-b border-black/5">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-xl bg-apple-accent text-white flex items-center justify-center shadow-sm">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-apple-text">手動新增行程</h3>
+                        <p class="text-[11px] text-apple-secondary">新增項目至第 <span id="modal-day-num" class="font-mono font-bold text-apple-accent">1</span> 天</p>
+                    </div>
+                </div>
+                <button onclick="toggleAddItineraryModal()" class="p-1 rounded-full text-apple-secondary hover:bg-apple-bg">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3 text-xs text-apple-text">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] text-apple-secondary font-medium mb-1">時間 / 時段</label>
+                        <input type="text" id="new-item-time" placeholder="例如: 14:00 - 15:30" class="w-full px-3 py-2 bg-apple-bg rounded-xl border border-black/5 focus:outline-none focus:ring-2 focus:ring-apple-accent/30 font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] text-apple-secondary font-medium mb-1">分類類別</label>
+                        <select id="new-item-category" class="w-full px-3 py-2 bg-apple-bg rounded-xl border border-black/5 focus:outline-none focus:ring-2 focus:ring-apple-accent/30">
+                            <option value="attraction">🏞️ 景點</option>
+                            <option value="food">🍜 美食</option>
+                            <option value="transport">🚗 交通</option>
+                            <option value="shopping">🛍️ 購物</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] text-apple-secondary font-medium mb-1">行程名稱</label>
+                    <input type="text" id="new-item-title" placeholder="例如: 藻岩山纜車觀景" class="w-full px-3 py-2 bg-apple-bg rounded-xl border border-black/5 focus:outline-none focus:ring-2 focus:ring-apple-accent/30 font-medium">
+                </div>
+
+                <div>
+                    <label class="block text-[10px] text-apple-secondary font-medium mb-1">行程詳細說明 / 筆記</label>
+                    <textarea id="new-item-desc" rows="2" placeholder="備註交通方式、停留時間或注意事項..." class="w-full px-3 py-2 bg-apple-bg rounded-xl border border-black/5 focus:outline-none focus:ring-2 focus:ring-apple-accent/30"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] text-apple-secondary font-medium mb-1">Google Maps 地圖連結 (可選)</label>
+                    <input type="url" id="new-item-map" placeholder="https://maps.app.goo.gl/..." class="w-full px-3 py-2 bg-apple-bg rounded-xl border border-black/5 focus:outline-none focus:ring-2 focus:ring-apple-accent/30 font-mono">
+                </div>
+            </div>
+
+            <div class="flex gap-2 pt-2">
+                <button onclick="toggleAddItineraryModal()" class="flex-1 btn-touch bg-apple-bg hover:bg-apple-subtle text-apple-text py-2.5 rounded-2xl text-xs font-semibold">
+                    取消
+                </button>
+                <button onclick="submitNewItineraryItem()" class="flex-1 btn-touch bg-apple-accent hover:bg-apple-accentHover text-white py-2.5 rounded-2xl text-xs font-semibold shadow-sm flex items-center justify-center gap-1">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                    <span>確定新增</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Airy Minimalist Header Banner -->
+    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+        <div class="bg-white rounded-3xl p-5 sm:p-8 border border-black/5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-5">
+            <div class="space-y-2.5">
+                <div class="inline-flex items-center space-x-1.5 bg-apple-sageLight px-3 py-1 rounded-full text-xs font-medium text-apple-sage border border-apple-sage/10">
+                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                    <span class="font-mono">2026.08.15 - 08.20 (6 Days)</span>
+                </div>
+                <h1 class="text-xl sm:text-3xl font-bold tracking-tight text-apple-text">
+                    北海道夏日慢旅計畫 <span class="text-apple-secondary font-normal text-base sm:text-xl block sm:inline mt-1 sm:mt-0">/ 札幌・富良野・小樽・登別</span>
+                </h1>
+                <p class="text-apple-secondary text-xs sm:text-sm max-w-xl leading-relaxed">
+                    以極簡步調走訪薰衣草花海、小樽運河與地獄谷地熱。點擊景點可直達 Google Maps 導航，隨手紀錄旅行每一筆開支。
+                </p>
+            </div>
+                        
+            <!-- Apple Flight Widget Card -->
+            <div class="bg-apple-bg rounded-2xl p-4 border border-black/5 max-w-sm w-full text-xs space-y-2.5">
+                <div class="flex justify-between items-center pb-2 border-b border-black/5">
+                    <span class="font-semibold flex items-center gap-1.5 text-apple-text"><i data-lucide="plane" class="w-4 h-4 text-apple-accent"></i> 往返航班資訊</span>
+                    <span class="px-2 py-0.5 bg-black/5 text-apple-secondary rounded-full text-[10px] font-medium">台灣往返</span>
+                </div>
+                <div class="space-y-2 font-mono text-apple-text">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-apple-secondary">08/15 去程</span>
+                        <span class="font-medium">虎航 IT234 <span class="text-apple-accent font-semibold">(06:20 - 11:05)</span></span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-apple-secondary">08/20 回程</span>
+                        <span class="font-medium">酷航 TR893 <span class="text-apple-accent font-semibold">(19:10 - 22:30)</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        
+            <!-- Left Main Panel (8 columns) -->
+            <div class="lg:col-span-8 space-y-5">
+                                
+                <!-- Apple-style Route Map Card -->
+                <div id="section-map" class="bg-white rounded-3xl p-5 border border-black/5 shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <h2 class="text-xs font-semibold tracking-wider text-apple-secondary uppercase flex items-center gap-1.5">
+                            <i data-lucide="map-pin" class="text-apple-accent w-4 h-4"></i>
+                            <span>行程路線導覽</span>
+                        </h2>
+                        <span class="text-[11px] text-apple-secondary">點擊節點可切換當日行程</span>
+                    </div>
+                                        
+                    <div class="relative w-full aspect-[21/8] sm:aspect-[21/7] bg-apple-bg rounded-2xl border border-black/5 flex items-center justify-center p-2">
+                        <svg class="w-full h-full max-h-[160px]" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Subtle Grid Lines -->
+                            <line x1="0" y1="150" x2="800" y2="150" stroke="#E5E5EA" stroke-width="1" />
+                            <line x1="400" y1="0" x2="400" y2="300" stroke="#E5E5EA" stroke-width="1" />
+                                                                                
+                            <!-- Route Paths -->
+                            <path d="M 120 180 Q 240 180 340 150 T 560 110 T 680 180" fill="none" stroke="#D1D1D6" stroke-width="2" />
+                            <path id="route-highlight" d="M 120 180 Q 240 180 340 150" fill="none" stroke="#0071E3" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="6,4" class="transition-all duration-500 ease-in-out" />
+
+                            <!-- Map Nodes -->
+                            <!-- CTS Airport -->
+                            <g class="cursor-pointer group" onclick="switchDay(1)">
+                                <circle cx="120" cy="180" r="10" fill="#0071E3" class="transition-transform duration-200 group-hover:scale-125" />
+                                <circle cx="120" cy="180" r="4" fill="#ffffff" />
+                                <text x="120" y="205" font-size="10.5" font-weight="600" fill="#1D1D1F" text-anchor="middle">新千歲 (D1)</text>
+                            </g>
+
+                            <!-- Sapporo Hub -->
+                            <g class="cursor-pointer group" onclick="switchDay(2)">
+                                <circle cx="340" cy="150" r="12" fill="#1D1D1F" class="transition-transform duration-200 group-hover:scale-125" />
+                                <circle cx="340" cy="150" r="5" fill="#0071E3" />
+                                <text x="340" y="128" font-size="11.5" font-weight="700" fill="#1D1D1F" text-anchor="middle">札幌市區 (D2/D6)</text>
+                            </g>
+
+                            <!-- Furano & Biei -->
+                            <g class="cursor-pointer group" onclick="switchDay(3)">
+                                <circle cx="560" cy="110" r="10" fill="#5E6E56" class="transition-transform duration-200 group-hover:scale-125" />
+                                <circle cx="560" cy="110" r="4" fill="#ffffff" />
+                                <text x="560" y="92" font-size="10.5" font-weight="600" fill="#1D1D1F" text-anchor="middle">富良野美瑛 (D3)</text>
+                            </g>
+
+                            <!-- Otaru -->
+                            <g class="cursor-pointer group" onclick="switchDay(4)">
+                                <circle cx="240" cy="100" r="10" fill="#86868B" class="transition-transform duration-200 group-hover:scale-125" />
+                                <circle cx="240" cy="100" r="4" fill="#ffffff" />
+                                <text x="240" y="83" font-size="10.5" font-weight="600" fill="#1D1D1F" text-anchor="middle">小樽 (D4)</text>
+                            </g>
+
+                            <!-- Noboribetsu & Toya -->
+                            <g class="cursor-pointer group" onclick="switchDay(5)">
+                                <circle cx="220" cy="240" r="10" fill="#86868B" class="transition-transform duration-200 group-hover:scale-125" />
+                                <circle cx="220" cy="240" r="4" fill="#ffffff" />
+                                <text x="220" y="262" font-size="10.5" font-weight="600" fill="#1D1D1F" text-anchor="middle">登別洞爺 (D5)</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Apple Pill Day Switcher -->
+                <div id="section-itinerary" class="bg-white rounded-2xl p-1.5 border border-black/5 flex overflow-x-auto gap-1.5 no-scrollbar shadow-sm">
+                    <button onclick="switchDay(1)" id="tab-1" class="btn-touch flex-1 min-w-[76px] py-2 px-2 rounded-xl flex flex-col items-center justify-center transition-all duration-200">
+                        <span class="text-[9px] font-mono tracking-wider">08/15 週六</span>
+                        <span class="text-xs font-bold mt-0.5">D1 薄野</span>
+                    </button>
+                    <button onclick="switchDay(2)" id="tab-2" class="btn-touch flex-1 min-w-[76px] py-2 px-2 rounded-xl flex flex-col items-center justify-center transition-all duration-200">
+                        <span class="text-[9px] font-mono tracking-wider">08/16 週日</span>
+                        <span class="text-xs font-bold mt-0.5">D2 札幌</span>
+                    </button>
+                    <button onclick="switchDay(3)" id="tab-3" class="btn-touch flex-1 min-w-[76px] py-2 px-2 rounded-xl flex flex-col items-center justify-center transition-all duration-200">
+                        <span class="text-[9px] font-mono tracking-wider">08/17 週一</span>
+                        <span class="text-xs font-bold mt-0.5">D3 富美</span>
+                    </button>
+                    <button onclick="switchDay(4)" id="tab-4" class="btn-touch flex-1 min-w-[76px] py-2 px-2 rounded-xl flex flex-col items-center justify-center transition-all duration-200">
+                        <span class="text-[9px] font-mono tracking-wider">08/18 週二</span>
+                        <span class="text-xs font-bold mt-0.5">D4 小樽</span>
+                    </button>
+                    <button onclick="switchDay(5)" id="tab-5" class="btn-touch flex-1 min-w-[76px] py-2 px-2 rounded-xl flex flex-col items-center justify-center transition-all duration-200">
+                        <span class="text-[9px] font-mono tracking-wider">08/19 週三</span>
+                        <span class="text-xs font-bold mt-0.5">D5 登洞</span>
+                    </button>
+                    <button onclick="switchDay(6)" id="tab-6" class="btn-touch flex-1 min-w-[76px] py-2 px-2 rounded-xl flex flex-col items-center justify-center transition-all duration-200">
+                        <span class="text-[9px] font-mono tracking-wider">08/20 週四</span>
+                        <span class="text-xs font-bold mt-0.5">D6 歸途</span>
+                    </button>
+                </div>
+
+                <!-- Minimal Category Filters -->
+                <div class="bg-white rounded-2xl px-4 py-3 border border-black/5 flex flex-wrap items-center justify-between gap-2 text-xs shadow-sm">
+                    <span class="font-semibold text-apple-secondary flex items-center gap-1.5">
+                        <i data-lucide="sliders" class="w-3.5 h-3.5 text-apple-text"></i> 分類過濾
+                    </span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="setFilter('all')" id="btn-filter-all" class="btn-touch px-3 py-1 rounded-full text-xs font-medium border border-apple-text bg-apple-text text-white transition-all">
+                            全部
+                        </button>
+                        <button onclick="setFilter('transport')" id="btn-filter-transport" class="btn-touch px-3 py-1 rounded-full text-xs font-medium border border-black/10 bg-apple-bg text-apple-text hover:bg-apple-subtle transition-all">
+                            🚗 交通
+                        </button>
+                        <button onclick="setFilter('attraction')" id="btn-filter-attraction" class="btn-touch px-3 py-1 rounded-full text-xs font-medium border border-black/10 bg-apple-bg text-apple-text hover:bg-apple-subtle transition-all">
+                            🏞️ 景點
+                        </button>
+                        <button onclick="setFilter('food')" id="btn-filter-food" class="btn-touch px-3 py-1 rounded-full text-xs font-medium border border-black/10 bg-apple-bg text-apple-text hover:bg-apple-subtle transition-all">
+                            🍜 美食
+                        </button>
+                        <button onclick="setFilter('shopping')" id="btn-filter-shopping" class="btn-touch px-3 py-1 rounded-full text-xs font-medium border border-black/10 bg-apple-bg text-apple-text hover:bg-apple-subtle transition-all">
+                            🛍️ 購物
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Summary Bar -->
+                <div id="day-summary-card" class="bg-white rounded-2xl p-4 border border-black/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shadow-sm">
+                    <div>
+                        <span id="summary-date" class="text-[10px] text-apple-secondary font-mono tracking-wider block uppercase">2026/08/15 (週六)</span>
+                        <h3 id="summary-title" class="text-base font-bold text-apple-text mt-0.5">第一天：薄野與狸小路漫遊</h3>
+                    </div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <div id="summary-highlights" class="flex flex-wrap gap-1.5">
+                            <!-- Injected by JS -->
+                        </div>
+                        <button onclick="openAddItineraryModal()" class="btn-touch px-3 py-1.5 bg-apple-sageLight hover:bg-apple-sageLight/80 text-apple-sage border border-apple-sage/20 rounded-full text-xs font-semibold flex items-center gap-1 shadow-xs ml-auto">
+                            <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
+                            <span>新增此日行程</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Itinerary List -->
+                <div id="itinerary-cards-list" class="space-y-3">
+                    <!-- Cards will be injected dynamically -->
+                </div>
+            </div>
+
+            <!-- Right Sidebar Panel (4 columns) -->
+            <div class="lg:col-span-4 space-y-5">
+
+                <!-- Apple-Style Expense Tracker Widget (記帳本) -->
+                <div id="section-expense" class="bg-white rounded-3xl p-5 border border-black/5 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xs font-semibold text-apple-secondary uppercase tracking-wider flex items-center gap-1.5">
+                            <i data-lucide="wallet" class="text-apple-accent w-4 h-4"></i>
+                            <span>旅行記帳本</span>
+                        </h3>
+                        <span class="text-[10px] bg-apple-bg text-apple-secondary px-2 py-0.5 rounded-full font-mono">1 JPY ≈ 0.21 TWD</span>
+                    </div>
+
+                    <!-- Total Spend Overview Card -->
+                    <div class="bg-apple-bg rounded-2xl p-4 border border-black/5 text-center">
+                        <span class="text-[10px] text-apple-secondary font-medium uppercase tracking-wider block">累計總花費</span>
+                        <div class="text-2xl font-bold font-mono text-apple-text mt-1" id="total-jpy">¥0</div>
+                        <div class="text-xs text-apple-secondary font-mono mt-0.5" id="total-twd">約 NT$ 0</div>
+                    </div>
+
+                    <!-- Add Expense Form -->
+                    <div class="space-y-2.5 pt-1">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="expense-title" placeholder="項目名稱 (如拉麵)" class="text-xs px-3 py-2 bg-apple-bg rounded-xl border border-black/5 focus:outline-none focus:ring-2 focus:ring-apple-accent/30 text-apple-text">
+                            <input type="number" id="expense-amount" placeholder="金額 (日幣 ¥)" class="text-xs px-3 py-2 bg-apple-bg rounded-xl border border-black/5 focus:outline-none focus:ring-2 focus:ring-apple-accent/30 text-apple-text font-mono">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <select id="expense-category" class="text-xs px-3 py-2 bg-apple-bg rounded-xl border border-black/5 focus:outline-none focus:ring-2 focus:ring-apple-accent/30 text-apple-text">
+                                <option value="food">🍜 美食</option>
+                                <option value="shopping">🛍️ 購物</option>
+                                <option value="transport">🚗 交通</option>
+                                <option value="ticket">🎟️ 門票/體驗</option>
+                                <option value="hotel">🏨 住宿</option>
+                                <option value="other">📦 其他</option>
+                            </select>
+                            <button onclick="addExpense()" class="btn-touch bg-apple-accent hover:bg-apple-accentHover text-white text-xs font-medium py-2 px-3 rounded-xl transition duration-200 flex items-center justify-center gap-1 shadow-sm">
+                                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                <span>記一筆</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Expenses List -->
+                    <div class="border-t border-black/5 pt-3">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-[11px] font-semibold text-apple-secondary">支出明細</span>
+                            <button onclick="clearAllExpenses()" class="text-[10px] text-apple-secondary hover:text-red-500 transition">清空</button>
+                        </div>
+                        <div id="expense-list" class="space-y-1.5 max-h-56 overflow-y-auto pr-1">
+                            <!-- Expenses render dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Apple-style Packing Checklist Widget -->
+                <div id="section-checklist" class="bg-white rounded-3xl p-5 border border-black/5 shadow-sm space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xs font-semibold text-apple-secondary uppercase tracking-wider flex items-center gap-1.5">
+                            <i data-lucide="check-circle-2" class="text-apple-sage w-4 h-4"></i>
+                            <span>出發行前清單</span>
+                        </h3>
+                        <span id="checklist-progress" class="text-[10px] bg-apple-bg text-apple-secondary font-mono px-2.5 py-0.5 rounded-full">0/0</span>
+                    </div>
+                                        
+                    <div id="checklist-items" class="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                        <!-- Checked items dynamic -->
+                    </div>
+
+                    <div class="pt-2 border-t border-black/5 flex gap-1.5">
+                        <input type="text" id="new-todo-input" placeholder="新增待辦事項..." class="flex-grow text-xs px-3 py-2 border border-black/5 rounded-xl focus:outline-none focus:ring-2 focus:ring-apple-sage/30 bg-apple-bg">
+                        <button onclick="addChecklistItem()" class="btn-touch bg-apple-text hover:bg-black text-white px-3 py-2 rounded-xl transition duration-200">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Minimal Tool Links -->
+                <div class="bg-white rounded-3xl p-5 border border-black/5 shadow-sm text-xs space-y-2.5">
+                    <h4 class="text-xs font-semibold text-apple-secondary uppercase tracking-wider flex items-center gap-1.5">
+                        <i data-lucide="external-link" class="w-4 h-4 text-apple-accent"></i> 實用連結工具箱
+                    </h4>
+                    <div class="space-y-1.5">
+                        <a href="https://www.google.com/maps" target="_blank" class="flex justify-between items-center p-2.5 bg-apple-bg rounded-xl hover:bg-apple-subtle/50 transition font-medium text-apple-text">
+                            <span class="flex items-center gap-2"><i data-lucide="map" class="w-3.5 h-3.5 text-apple-accent"></i> Google Maps 網頁版</span>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-apple-secondary"></i>
+                        </a>
+                        <a href="https://www.klook.com/zh-TW/" target="_blank" class="flex justify-between items-center p-2.5 bg-apple-bg rounded-xl hover:bg-apple-subtle/50 transition font-medium text-apple-text">
+                            <span class="flex items-center gap-2"><i data-lucide="ticket" class="w-3.5 h-3.5 text-orange-500"></i> Klook 預訂憑證專區</span>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-apple-secondary"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Native App Bottom Tab Bar (Only Visible on Mobile Screens) -->
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 apple-glass border-t border-black/10 pb-safe pt-2 px-6">
+        <div class="flex justify-around items-center text-[10px] font-medium text-apple-secondary">
+            <button onclick="scrollToSection('section-itinerary')" class="btn-touch flex flex-col items-center gap-1 hover:text-apple-accent focus:text-apple-accent">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+                <span>每日行程</span>
+            </button>
+            <button onclick="scrollToSection('section-map')" class="btn-touch flex flex-col items-center gap-1 hover:text-apple-accent focus:text-apple-accent">
+                <i data-lucide="map" class="w-5 h-5"></i>
+                <span>路線地圖</span>
+            </button>
+            <button onclick="scrollToSection('section-expense')" class="btn-touch flex flex-col items-center gap-1 hover:text-apple-accent focus:text-apple-accent">
+                <i data-lucide="wallet" class="w-5 h-5"></i>
+                <span>旅行記帳</span>
+            </button>
+            <button onclick="scrollToSection('section-checklist')" class="btn-touch flex flex-col items-center gap-1 hover:text-apple-accent focus:text-apple-accent">
+                <i data-lucide="check-square" class="w-5 h-5"></i>
+                <span>行前清單</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Minimalist Toast -->
+    <div id="toast-message" class="fixed bottom-16 sm:bottom-5 right-5 apple-glass text-apple-text px-4 py-3 rounded-2xl shadow-xl border border-black/5 text-xs flex items-center gap-2.5 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <i data-lucide="check-circle" class="text-apple-accent w-4 h-4"></i>
+        <span id="toast-text">已複製連結！</span>
+    </div>
+
+    <script>
+        // Updated Master Itinerary Database (Loaded from LocalStorage if available)
+        const defaultItineraryData = {
+            1: {
+                date: "2026/08/15 (週六)",
+                title: "第一天：抵達新千歲，薄野啤酒節與狸小路購物",
+                highlights: ["✈️ 飛抵北海道", "🍜 一幻/輝風拉麵", "🍺 大通啤酒節", "🛍️ Alpen Outdoor"],
+                pathLength: "M 120 180 Q 240 180 340 150",
+                items: [
+                    {
+                        id: "d1-flight",
+                        category: "transport",
+                        time: "06:20 - 11:05",
+                        title: "台灣虎航 IT234 (台北桃機 ➔ 新千歲)",
+                        desc: "早班機出發。班機抵達新千歲機場後辦理入境。",
+                        tip: "提早 2.5 小時抵達桃園國際機場辦理 Check-in。"
+                    },
+                    {
+                        id: "d1-cts-area",
+                        category: "attraction",
+                        time: "11:05 - 13:00",
+                        title: "新千歲機場國內線 3 樓（美食與購物區）",
+                        desc: "抵達後可在機場 3 樓享用知名美食或選購伴手禮。"
+                    },
+                    {
+                        id: "d1-ramen-options",
+                        category: "food",
+                        time: "午餐建議",
+                        title: "一幻拉麵（機場店） / 札幌拉麵 輝風 薄野店",
+                        desc: "可選擇在機場品嚐濃郁甜蝦頭高湯的一幻拉麵，或是進市區後品嚐位在薄野的排隊人氣名店輝風拉麵。"
+                    },
+                    {
+                        id: "d1-jr-transport",
+                        category: "transport",
+                        time: "13:30 - 14:30",
+                        title: "JR 快速 Airport 號 ➔ 地下鐵南北線 ➔ 薄野飯店",
+                        desc: "搭乘 JR 快速 Airport 號（約 37 分鐘）至札幌站，轉搭地下鐵南北線至「薄野站 (Susukino)」，步行約 3-5 分鐘至 ANA Holiday Inn Sapporo Susukino 辦理入住。",
+                        badge: "地鐵1日票 ¥830 / 週末地鐵券 ¥520 / 單趟 ¥210~330"
+                    },
+                    {
+                        id: "d1-odori-park",
+                        category: "attraction",
+                        time: "15:30 - 17:30",
+                        title: "大通公園：札幌大通啤酒花園 ＆ 北海盆舞",
+                        desc: "體驗北海道盛夏限定的大通公園露天啤酒節，現場享受清涼生啤酒與道地北海盆舞節慶氛圍。"
+                    },
+                    {
+                        id: "d1-tanukikoji",
+                        category: "shopping",
+                        time: "18:00 - 20:30",
+                        title: "狸小路商店街 ＆ Alpen Outdoors 戶外旗艦店",
+                        desc: "漫步熱鬧的狸小路拱廊商店街。露營與戶外裝備愛好者可至 Alpen Outdoors 大肆選購。",
+                        links: [{ text: "Alpen Outdoors Google Map", url: "https://maps.app.goo.gl/4K1ZShgLvqxZcQ6n7" }]
+                    }
+                ]
+            },
+            2: {
+                date: "2026/08/16 (週日)",
+                title: "第二天：札幌經典巡禮、神宮祈福與藻岩山百萬夜景",
+                highlights: ["⛩️ 北海道神宮", "🍫 白色戀人", "🦀️ 螃蟹大餐", "🌌 藻岩山夜景"],
+                pathLength: "M 340 150 L 345 150",
+                items: [
+                    {
+                        id: "d2-shrine",
+                        category: "attraction",
+                        time: "09:00 - 11:00",
+                        title: "北海道神宮（享用現烤「判官餅」）",
+                        desc: "參拜北海道總鎮守，並可前往神宮茶屋享用限定現烤外酥內黏的熱騰騰「判官餅」。"
+                    },
+                    {
+                        id: "d2-shiroi",
+                        category: "attraction",
+                        time: "11:30 - 13:30",
+                        title: "白色戀人公園 (Shiroi Koibito Park)",
+                        desc: "歐式童話城堡建築，觀賞著名白色戀人巧克力餅乾製作過程與美麗庭園。"
+                    },
+                    {
+                        id: "d2-beer-museum",
+                        category: "attraction",
+                        time: "14:00 - 16:00",
+                        title: "札幌啤酒博物館 (Sapporo Beer Museum)",
+                        desc: "深入了解日本歷史最悠久的啤酒品牌歷史，現場可品嚐紅星限定生啤酒試飲套組。"
+                    },
+                    {
+                        id: "d2-crab-dinner",
+                        category: "food",
+                        time: "17:00 - 19:00",
+                        title: "晚餐螃蟹美饌：蟹本家 (かに本家) / 螃蟹將軍 (かに將軍)",
+                        desc: "品嚐最頂級的帝王蟹、松葉蟹懷石料理，感受鮮甜螃蟹刺身與熱氣騰騰的蟹鍋。",
+                        links: [
+                            { text: "蟹本家 Google MAP", url: "https://maps.app.goo.gl/671pbCdSuyhFjkfP9" },
+                            { text: "螃蟹將軍 Google MAP", url: "https://maps.app.goo.gl/qZVyyFpqdRC3agfLA" }
+                        ]
+                    },
+                    {
+                        id: "d2-hitsujigaoka",
+                        category: "attraction",
+                        time: "景點推薦",
+                        title: "羊之丘展望台",
+                        desc: "俯瞰札幌市區景致與遼闊草原，與名言「Boy, be ambitious!」克拉克博士銅像合照。"
+                    },
+                    {
+                        id: "d2-moiwa",
+                        category: "attraction",
+                        time: "19:30 - 21:30",
+                        title: "藻岩山頂纜車看夜景 (日本新三大夜景)",
+                        desc: "搭乘札幌市電至「ロープウェイ入口」下車，轉乘免費接駁巴士（每15分鐘一班）至山麓站搭纜車登頂觀賞無敵璀璨夜景。",
+                        links: [{ text: "Klook 藻岩山纜車門票", url: "https://www.klook.com/zh-TW/activity/99611-mt-moiwa-ropeway/?spm=City.Activity_LIST&clickId=8b86e949b0" }]
+                    }
+                ]
+            },
+            3: {
+                date: "2026/08/17 (週一)",
+                title: "第三天：夢幻富良野美瑛拼布花海一日遊",
+                highlights: ["🌸 四季彩之丘", "🌿 富田農場", "🧪 青池白鬚", "🍛 奧芝湯咖哩"],
+                pathLength: "M 340 150 Q 450 130 560 110",
+                items: [
+                    {
+                        id: "d3-tour",
+                        category: "attraction",
+                        time: "07:30 - 18:30",
+                        title: "報名札幌出發：富良野 ＆ 美瑛一日遊巴士專車",
+                        desc: "專車前往富良野美瑛經典線路，欣賞夏日拼布花海絕景。"
+                    },
+                    {
+                        id: "d3-shikisai",
+                        category: "attraction",
+                        time: "景點巡禮",
+                        title: "四季彩之丘 ＆ 富田農場",
+                        desc: "漫步彩虹花田與薰衣草花海，必吃香濃薰衣草霜淇淋與北海道甜哈密瓜。"
+                    },
+                    {
+                        id: "d3-pond",
+                        category: "attraction",
+                        time: "景點巡禮",
+                        title: "白金青池 ＆ 白鬚瀑布",
+                        desc: "欣賞蔚藍清澈的水面與枯木交織的奇幻青池，以及微藍水光直奔溪谷的白鬚瀑布。"
+                    },
+                    {
+                        id: "d3-curry",
+                        category: "food",
+                        time: "19:00 - 20:30",
+                        title: "湯咖哩 奥芝商店 (站前創成寺 / 実家)",
+                        desc: "回到札幌市區，品嚐以獨門濃郁蝦湯為基底的排隊湯咖哩名店奧芝商店。",
+                        links: [
+                            { text: "奧芝商店 站前創成寺 MAP", url: "https://maps.app.goo.gl/ewnQ5BH7SLBFa22f7" },
+                            { text: "奧芝商店 実家 MAP", url: "https://maps.app.goo.gl/R5eEX4o35PJKpFE17" }
+                        ]
+                    },
+                    {
+                        id: "d3-sushi",
+                        category: "food",
+                        time: "美食備選",
+                        title: "根室花丸迴轉壽司 (札幌車站 Stellar Place 6樓)",
+                        desc: "高 CP 值道地迴轉壽司，備有極其鮮美的海膽、鮭魚卵與厚切握壽司。"
+                    }
+                ]
+            },
+            4: {
+                date: "2026/08/18 (週二)",
+                title: "第四天：浪漫小樽運河、音樂盒堂與天狗山夜景",
+                highlights: ["🚂 南小樽起點", "🎶 百年蒸汽鐘", "🐟 爆卵海鮮丼", "🌌 天狗山纜車"],
+                pathLength: "M 340 150 Q 280 110 240 100",
+                items: [
+                    {
+                        id: "d4-jr",
+                        category: "transport",
+                        time: "09:00 - 09:40",
+                        title: "JR 函館本線「快速 Airport」前往小樽",
+                        desc: "搭乘約 30-35 分鐘。💡 建議在「南小樽站」下車，一路往小樽站方向邊走邊逛最順路不走回頭路！",
+                        badge: "Klook 小樽與神威岬一日團可參考"
+                    },
+                    {
+                        id: "d4-music",
+                        category: "attraction",
+                        time: "10:00 - 12:00",
+                        title: "小樽音樂盒堂本館（門前百年蒸汽鐘）＆ 玻璃工藝店",
+                        desc: "欣賞聆聽蒸汽鐘演奏，漫步精緻玻璃硝子館與手工音樂盒堂。"
+                    },
+                    {
+                        id: "d4-seafood",
+                        category: "food",
+                        time: "12:00 - 13:30",
+                        title: "海鮮美食饗宴：政壽司 / 旭壽司 / 滝波食堂 / みなと食堂",
+                        desc: "午餐精選：三角市場爆膏鮭魚卵松葉蟹丼（滝波食堂），或小樽代表手作壽司名店政壽司、旭壽司。",
+                        links: [
+                            { text: "政壽司 MAP", url: "https://maps.app.goo.gl/LATEjymMY7Vz684n9" },
+                            { text: "旭壽司 MAP", url: "https://maps.app.goo.gl/z9B5gbV8wJwBqMV99" },
+                            { text: "滝波食堂 MAP", url: "https://maps.app.goo.gl/MnVrUFs39YABMUDb7" },
+                            { text: "みなと食堂 MAP", url: "https://maps.app.goo.gl/z7QeQNpXc7m1Npv86" }
+                        ]
+                    },
+                    {
+                        id: "d4-canal-sweets",
+                        category: "shopping",
+                        time: "14:00 - 17:00",
+                        title: "小樽運河 ＆ 堺町通三大甜點 (LeTAO、北菓樓、六花亭)",
+                        desc: "漫步經典小樽運河，享用 LeTAO 原味雙層乳酪蛋糕、北菓樓夢不思議大泡芙與六花亭夾心餅。",
+                        links: [
+                            { text: "LeTAO 總店 MAP", url: "https://maps.app.goo.gl/4cYhVS5AD51dZAVF8" },
+                            { text: "北菓樓 MAP", url: "https://maps.app.goo.gl/uBQobPmkwCfZ7dC86" },
+                            { text: "六花亭 MAP", url: "https://maps.app.goo.gl/Pz68n3TjkJhN3fmR6" }
+                        ]
+                    },
+                    {
+                        id: "d4-tengu",
+                        category: "attraction",
+                        time: "17:30 - 19:30",
+                        title: "小樽天狗山纜車（米其林一星級港灣夜景）",
+                        desc: "搭乘纜車登頂，《情書》拍攝地，俯瞰小樽港灣與溫馨城市燈火夜景。"
+                    },
+                    {
+                        id: "d4-back",
+                        category: "transport",
+                        time: "20:00 - 22:00",
+                        title: "搭乘 JR 返回札幌市區 ＆ 宵夜",
+                        desc: "返抵札幌，享受夏日夜晚氣氛，紀念員旅合影留念。"
+                    }
+                ]
+            },
+            5: {
+                date: "2026/08/19 (週三)",
+                title: "第五天：登別地獄谷、火山地態與洞爺湖散策",
+                highlights: ["🌋 登別地獄谷", "🌊 地球岬", "🛳️ 洞爺湖", "🥩 RAZAN 燒肉"],
+                pathLength: "M 340 150 Q 280 220 220 240",
+                items: [
+                    {
+                        id: "d5-tour",
+                        category: "attraction",
+                        time: "08:00 - 18:30",
+                        title: "報名札幌出發：登別地獄谷 ＆ 洞爺湖一日遊",
+                        desc: "搭乘一日遊專車，遊覽登別溫泉地熱與壯麗洞爺湖全景。"
+                    },
+                    {
+                        id: "d5-noboribetsu",
+                        category: "attraction",
+                        time: "景點巡禮",
+                        title: "登別溫泉地獄谷 ＆ 地球岬展望台",
+                        desc: "觀看硫磺蒸汽繚繞的地熱火山地貌，以及地球岬 360 度海平線壯麗景觀。"
+                    },
+                    {
+                        id: "d5-toya-options",
+                        category: "attraction",
+                        time: "景點巡禮",
+                        title: "筒倉展望台 ＆ 洞爺湖溫泉街 / 有珠山昭和新山 / 支笏湖",
+                        desc: "於筒倉展望台鳥瞰洞爺湖中島，可選擇走訪洞爺湖畔溫泉街，或前往昭和新山及支笏湖風光。"
+                    },
+                    {
+                        id: "d5-razan",
+                        category: "food",
+                        time: "19:30 - 21:30",
+                        title: "晚餐饗宴：RAZAN 焼肉 (薄野日式炭火燒肉)",
+                        desc: "品嚐頂級黑毛和牛炭火燒肉，多汁肉香濃郁，為旅程增添豐富風味。",
+                        links: [{ text: "RAZAN 燒肉 Google MAP", url: "https://maps.app.goo.gl/8dexz1arN41dSXyf6" }]
+                    }
+                ]
+            },
+            6: {
+                date: "2026/08/20 (週四)",
+                title: "第六天：二條市場海鮮早餐、時鐘台與機場購物歸途",
+                highlights: ["🐟 二條市場", "🏛️ 時鐘台舊道廳", "🍦 Kinotoya 霜淇淋", "✈️ 酷航回台"],
+                pathLength: "M 340 150 Q 240 180 120 180",
+                items: [
+                    {
+                        id: "d6-market",
+                        category: "food",
+                        time: "09:00 - 10:30",
+                        title: "二條市場早餐：超豪華海鮮蓋飯 丼兵衛",
+                        desc: "最後一天早晨前往二條市場，享用鋪滿鮭魚卵、海膽與牡丹蝦的鮮美海鮮丼。",
+                        links: [
+                            { text: "二條市場 Google MAP", url: "https://maps.app.goo.gl/LmWgJZ7HKp4yn3vQ7" },
+                            { text: "海鮮蓋飯 丼兵衛 MAP", url: "https://maps.app.goo.gl/wbub9FBYU5YqgfaA9" }
+                        ]
+                    },
+                    {
+                        id: "d6-city-walk",
+                        category: "attraction",
+                        time: "10:30 - 13:00",
+                        title: "札幌市鐘樓 (時鐘台) ＆ 北海道廳舊本廳舍 (舊道廳)",
+                        desc: "市區最後歷史建築巡禮散步，感受濃厚北國浪漫風情。"
+                    },
+                    {
+                        id: "d6-jr-cts",
+                        category: "transport",
+                        time: "14:30",
+                        title: "搭乘 JR 快速 Airport 號前往新千歲機場",
+                        desc: "提前前往機場辦理登機。新千歲機場國內線極其好逛！"
+                    },
+                    {
+                        id: "d6-airport-sweets",
+                        category: "shopping",
+                        time: "15:30 - 19:10",
+                        title: "機場爆買伴手禮 ＆ Kinotoya 極上牛乳霜淇淋 ＆ LeTAO 限定甜點",
+                        desc: "必吃 Kinotoya 濃郁極致牛乳霜淇淋，並掃購六花亭、白色戀人與 ROYCE 巧克力。"
+                    },
+                    {
+                        id: "d6-flight-back",
+                        category: "transport",
+                        time: "19:10 - 22:30",
+                        title: "酷航 TR893 (新千歲 ➔ 台北桃機)",
+                        desc: "滿載美好回憶搭機返台，預計於 22:30 抵達桃園國際機場。"
+                    }
+                ]
+            }
+        };
+
+        let itineraryData = JSON.parse(localStorage.getItem('hokkaido_itinerary_data')) || defaultItineraryData;
+
+        // Save itinerary data to local storage
+        function saveItineraryData() {
+            localStorage.setItem('hokkaido_itinerary_data', JSON.stringify(itineraryData));
+        }
+
+        // Toggle Add Itinerary Modal
+        function toggleAddItineraryModal() {
+            const modal = document.getElementById('add-itinerary-modal');
+            if (modal) {
+                modal.classList.toggle('hidden');
+            }
+        }
+
+        function openAddItineraryModal() {
+            document.getElementById('modal-day-num').textContent = activeDay;
+            // Clear inputs
+            document.getElementById('new-item-time').value = '';
+            document.getElementById('new-item-title').value = '';
+            document.getElementById('new-item-desc').value = '';
+            document.getElementById('new-item-map').value = '';
+            toggleAddItineraryModal();
+        }
+
+        // Add custom itinerary item
+        function submitNewItineraryItem() {
+            const time = document.getElementById('new-item-time').value.trim() || '彈性時間';
+            const category = document.getElementById('new-item-category').value;
+            const title = document.getElementById('new-item-title').value.trim();
+            const desc = document.getElementById('new-item-desc').value.trim();
+            const mapUrl = document.getElementById('new-item-map').value.trim();
+
+            if (!title) {
+                showToast("請輸入行程名稱！");
+                return;
+            }
+
+            const newItem = {
+                id: 'custom-' + Date.now(),
+                category: category,
+                time: time,
+                title: title,
+                desc: desc || '手動新增之自訂行程項目。'
+            };
+
+            if (mapUrl) {
+                newItem.links = [{ text: "Google Map 導航", url: mapUrl }];
+            }
+
+            if (!itineraryData[activeDay].items) {
+                itineraryData[activeDay].items = [];
+            }
+
+            itineraryData[activeDay].items.push(newItem);
+            saveItineraryData();
+            
+            toggleAddItineraryModal();
+            renderItinerary();
+            showToast("成功新增行程項目！📍");
+        }
+
+        // Delete itinerary item
+        function deleteItineraryItem(itemId) {
+            if (!itineraryData[activeDay] || !itineraryData[activeDay].items) return;
+
+            itineraryData[activeDay].items = itineraryData[activeDay].items.filter(item => item.id !== itemId);
+            saveItineraryData();
+            renderItinerary();
+            showToast("已刪除該行程項目");
+        }
+
+        // UI State
+        let activeDay = 1;
+        let activeFilter = 'all';
+
+        // Expense Tracker Data (Persisted in localStorage)
+        let expenses = JSON.parse(localStorage.getItem('hokkaido_expenses')) || [
+            { id: 1, title: "地鐵一日券", amount: 520, category: "transport", day: 1 },
+            { id: 2, title: "大通公園生啤酒", amount: 800, category: "food", day: 1 }
+        ];
+
+        // Packing Checklist Data (Persisted in localStorage)
+        let checklist = JSON.parse(localStorage.getItem('hokkaido_checklist')) || [
+            { id: 1, text: "護照與身分證件影本", checked: true },
+            { id: 2, text: "Klook 票券及一日遊預約憑證", checked: true },
+            { id: 3, text: "日圓現鈔 ＆ 雙幣信用卡", checked: false },
+            { id: 4, text: "常備個人藥品 ＆ 暈車藥", checked: false },
+            { id: 5, text: "防曬乳 ＆ 墨鏡 ＆ 輕量遮陽傘", checked: false },
+            { id: 6, text: "行動電源 ＆ 日本轉接頭", checked: false }
+        ];
+
+        // Scroll to Section (App Mobile Navigation)
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Toggle PWA Install Modal
+        function togglePwaInstallGuide() {
+            const modal = document.getElementById('pwa-install-modal');
+            if (modal) {
+                modal.classList.toggle('hidden');
+            }
+        }
+
+        // Switch Day View
+        function switchDay(dayNum) {
+            activeDay = dayNum;
+            
+            // Map Highlighting
+            const routePath = document.getElementById('route-highlight');
+            if (routePath && itineraryData[dayNum]) {
+                routePath.setAttribute('d', itineraryData[dayNum].pathLength);
+            }
+
+            // Tab Styling
+            for (let i = 1; i <= 6; i++) {
+                const tab = document.getElementById(`tab-${i}`);
+                if (tab) {
+                    if (i === dayNum) {
+                        tab.className = "btn-touch flex-1 min-w-[76px] py-2 px-2 rounded-xl flex flex-col items-center justify-center transition-all duration-200 bg-apple-accent text-white shadow-sm font-medium";
+                    } else {
+                        tab.className = "btn-touch flex-1 min-w-[76px] py-2 px-2 rounded-xl flex flex-col items-center justify-center transition-all duration-200 bg-apple-bg text-apple-text hover:bg-apple-subtle/60";
+                    }
+                }
+            }
+
+            // Render Day Header Summary
+            const dayInfo = itineraryData[dayNum];
+            document.getElementById('summary-date').textContent = dayInfo.date;
+            document.getElementById('summary-title').textContent = dayInfo.title;
+            
+            const highlightsContainer = document.getElementById('summary-highlights');
+            highlightsContainer.innerHTML = '';
+            dayInfo.highlights.forEach(hl => {
+                const badge = document.createElement('span');
+                badge.className = "px-2.5 py-0.5 bg-apple-bg text-apple-text text-[10px] font-medium rounded-full border border-black/5";
+                badge.textContent = hl;
+                highlightsContainer.appendChild(badge);
+            });
+
+            renderItinerary();
+        }
+
+        // Filter Logic
+        function setFilter(category) {
+            activeFilter = category;
+            const categories = ['all', 'transport', 'attraction', 'food', 'shopping'];
+            categories.forEach(cat => {
+                const btn = document.getElementById(`btn-filter-${cat}`);
+                if (btn) {
+                    if (cat === category) {
+                        btn.className = "btn-touch px-3 py-1 rounded-full text-xs font-medium border border-apple-text bg-apple-text text-white transition-all";
+                    } else {
+                        btn.className = "btn-touch px-3 py-1 rounded-full text-xs font-medium border border-black/10 bg-apple-bg text-apple-text hover:bg-apple-subtle transition-all";
+                    }
+                }
+            });
+
+            renderItinerary();
+        }
+
+        // Render Itinerary Cards
+        function renderItinerary() {
+            const listContainer = document.getElementById('itinerary-cards-list');
+            listContainer.innerHTML = '';
+
+            const dayItems = itineraryData[activeDay].items || [];
+            const filteredItems = dayItems.filter(item => activeFilter === 'all' || item.category === activeFilter);
+
+            if (filteredItems.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="bg-white rounded-2xl p-8 border border-black/5 text-center space-y-2 shadow-sm">
+                        <i data-lucide="inbox" class="w-8 h-8 text-apple-secondary mx-auto"></i>
+                        <p class="text-xs text-apple-secondary">此類別暫無安排行程，點擊上方「新增此日行程」建立！</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            filteredItems.forEach(item => {
+                let categoryIcon = "compass";
+                let categoryLabel = "景點";
+                let categoryBadgeClass = "bg-emerald-50 text-emerald-700 border-emerald-100";
+                
+                if (item.category === 'transport') {
+                    categoryIcon = "navigation";
+                    categoryLabel = "交通";
+                    categoryBadgeClass = "bg-blue-50 text-blue-700 border-blue-100";
+                } else if (item.category === 'food') {
+                    categoryIcon = "utensils";
+                    categoryLabel = "美食";
+                    categoryBadgeClass = "bg-orange-50 text-orange-700 border-orange-100";
+                } else if (item.category === 'shopping') {
+                    categoryIcon = "shopping-bag";
+                    categoryLabel = "購物";
+                    categoryBadgeClass = "bg-purple-50 text-purple-700 border-purple-100";
+                }
+
+                // Format Google Map Links
+                let linksHTML = '';
+                if (item.links) {
+                    item.links.forEach(l => {
+                        linksHTML += `
+                            <a href="${l.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] text-apple-accent hover:underline font-medium">
+                                <i data-lucide="map-pin" class="w-3 h-3"></i> ${l.text}
+                            </a>
+                        `;
+                    });
+                }
+
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl p-4 border border-black/5 shadow-sm hover:shadow transition-all duration-200 flex flex-col sm:flex-row gap-4 items-start relative group";
+                card.innerHTML = `
+                    <!-- Delete Button -->
+                    <button onclick="deleteItineraryItem('${item.id}')" title="刪除行程" class="absolute top-3 right-3 text-apple-secondary hover:text-red-500 opacity-60 hover:opacity-100 transition p-1 rounded-full hover:bg-red-50">
+                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                    </button>
+
+                    <!-- Time & Badge -->
+                    <div class="flex sm:flex-col items-center justify-between w-full sm:w-28 shrink-0 sm:border-r border-black/5 sm:pr-4 gap-1.5 pr-6 sm:pr-4">
+                        <div class="text-xs font-mono font-bold text-apple-text tracking-tight">${item.time}</div>
+                        <span class="px-2 py-0.5 rounded-full text-[9px] font-medium border ${categoryBadgeClass} flex items-center gap-1">
+                            <i data-lucide="${categoryIcon}" class="w-2.5 h-2.5"></i> ${categoryLabel}
+                        </span>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="flex-grow space-y-1.5 w-full pr-2">
+                        <h4 class="text-xs sm:text-sm font-semibold text-apple-text leading-snug">${item.title}</h4>
+                        <p class="text-apple-secondary text-[11px] leading-relaxed">${item.desc}</p>
+                        
+                        ${item.tip ? `
+                            <div class="bg-apple-bg p-2 text-[10px] text-apple-text rounded-xl border border-black/5">
+                                <span class="font-semibold">💡 提示:</span> ${item.tip}
+                            </div>
+                        ` : ''}
+
+                        ${item.badge ? `
+                            <span class="inline-block px-2 py-0.5 bg-black/5 text-apple-secondary text-[9px] font-mono rounded-full">${item.badge}</span>
+                        ` : ''}
+
+                        ${linksHTML ? `<div class="flex flex-wrap gap-3 pt-1">${linksHTML}</div>` : ''}
+                    </div>
+                `;
+
+                listContainer.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+
+        // Expense Tracker Functions
+        function renderExpenses() {
+            const container = document.getElementById('expense-list');
+            container.innerHTML = '';
+
+            let totalJPY = 0;
+            const categoryEmoji = {
+                food: "🍜",
+                shopping: "🛍️",
+                transport: "🚗",
+                ticket: "🎟️",
+                hotel: "🏨",
+                other: "📦"
+            };
+
+            expenses.forEach((item, index) => {
+                totalJPY += Number(item.amount);
+                const el = document.createElement('div');
+                el.className = "flex justify-between items-center p-2 bg-apple-bg rounded-xl border border-black/5 text-xs";
+                el.innerHTML = `
+                    <div class="flex items-center gap-2 truncate max-w-[70%]">
+                        <span>${categoryEmoji[item.category] || "📦"}</span>
+                        <span class="font-medium text-apple-text truncate">${item.title}</span>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0 font-mono">
+                        <span class="font-semibold text-apple-text">¥${item.amount.toLocaleString()}</span>
+                        <button onclick="deleteExpense(${index})" class="text-apple-secondary hover:text-red-500 transition">
+                            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+
+            const rate = 0.21; // JPY to TWD estimated rate
+            const totalTWD = Math.round(totalJPY * rate);
+
+            document.getElementById('total-jpy').textContent = `¥ ${totalJPY.toLocaleString()}`;
+            document.getElementById('total-twd').textContent = `約 NT$ ${totalTWD.toLocaleString()}`;
+
+            if (expenses.length === 0) {
+                container.innerHTML = `<p class="text-[10px] text-apple-secondary text-center py-3">尚無記帳項目</p>`;
+            }
+
+            lucide.createIcons();
+        }
+
+        function addExpense() {
+            const titleInput = document.getElementById('expense-title');
+            const amountInput = document.getElementById('expense-amount');
+            const categorySelect = document.getElementById('expense-category');
+
+            const title = titleInput.value.trim();
+            const amount = parseFloat(amountInput.value);
+
+            if (!title || isNaN(amount) || amount <= 0) {
+                showToast("請輸入有效的名稱與金額！");
+                return;
+            }
+
+            expenses.push({
+                id: Date.now(),
+                title: title,
+                amount: amount,
+                category: categorySelect.value,
+                day: activeDay
+            });
+
+            localStorage.setItem('hokkaido_expenses', JSON.stringify(expenses));
+            titleInput.value = '';
+            amountInput.value = '';
+            
+            renderExpenses();
+            showToast("成功加入一筆消費紀錄！💰");
+        }
+
+        function deleteExpense(index) {
+            expenses.splice(index, 1);
+            localStorage.setItem('hokkaido_expenses', JSON.stringify(expenses));
+            renderExpenses();
+        }
+
+        function clearAllExpenses() {
+            if (expenses.length === 0) return;
+            expenses = [];
+            localStorage.setItem('hokkaido_expenses', JSON.stringify(expenses));
+            renderExpenses();
+            showToast("已清空所有記帳明細！");
+        }
+
+        // Checklist Functions
+        function toggleChecklist(id) {
+            checklist = checklist.map(item => {
+                if (item.id === id) return { ...item, checked: !item.checked };
+                return item;
+            });
+            localStorage.setItem('hokkaido_checklist', JSON.stringify(checklist));
+            renderChecklist();
+        }
+
+        function removeChecklistItem(id) {
+            checklist = checklist.filter(item => item.id !== id);
+            localStorage.setItem('hokkaido_checklist', JSON.stringify(checklist));
+            renderChecklist();
+        }
+
+        function renderChecklist() {
+            const container = document.getElementById('checklist-items');
+            container.innerHTML = '';
+
+            const completed = checklist.filter(item => item.checked).length;
+            document.getElementById('checklist-progress').textContent = `${completed}/${checklist.length}`;
+
+            if (checklist.length === 0) {
+                container.innerHTML = `<p class="text-[10px] text-apple-secondary text-center py-2">目前無待辦項目</p>`;
+                return;
+            }
+
+            checklist.forEach(item => {
+                const el = document.createElement('div');
+                el.className = `flex justify-between items-center p-2 rounded-xl border ${item.checked ? 'bg-apple-bg/50 border-black/5' : 'bg-white border-black/5'} transition`;
+                el.innerHTML = `
+                    <div class="flex items-center gap-2 max-w-[85%]">
+                        <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleChecklist(${item.id})" class="accent-apple-accent w-3.5 h-3.5 cursor-pointer rounded">
+                        <span class="text-[11px] truncate cursor-pointer ${item.checked ? 'line-through text-apple-secondary' : 'text-apple-text font-medium'}" onclick="toggleChecklist(${item.id})">${item.text}</span>
+                    </div>
+                    <button onclick="removeChecklistItem(${item.id})" class="text-apple-secondary hover:text-red-500 transition">
+                        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                    </button>
+                `;
+                container.appendChild(el);
+            });
+            lucide.createIcons();
+        }
+
+        function addChecklistItem() {
+            const input = document.getElementById('new-todo-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            checklist.push({
+                id: Date.now(),
+                text: text,
+                checked: false
+            });
+            localStorage.setItem('hokkaido_checklist', JSON.stringify(checklist));
+            input.value = '';
+            renderChecklist();
+            showToast("成功加入行前清單！💼");
+        }
+
+        // Share Link Simulation
+        function shareItinerary() {
+            document.execCommand('copy');
+            showToast("已成功複製行程計畫連結！✈️");
+        }
+
+        // Toast Notification Function
+        function showToast(text) {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            if (!toast) return;
+
+            toastText.textContent = text;
+            toast.className = "fixed bottom-16 sm:bottom-5 right-5 apple-glass text-apple-text px-4 py-3 rounded-2xl shadow-xl border border-black/5 text-xs flex items-center gap-2.5 transform translate-y-0 opacity-100 transition-all duration-300 z-50";
+            
+            setTimeout(() => {
+                toast.className = "fixed bottom-16 sm:bottom-5 right-5 apple-glass text-apple-text px-4 py-3 rounded-2xl shadow-xl border border-black/5 text-xs flex items-center gap-2.5 transform translate-y-20 opacity-0 transition-all duration-300 z-50";
+            }, 3000);
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const departureDate = new Date("2026-08-15T06:20:00").getTime();
+            const now = new Date().getTime();
+            const gap = departureDate - now;
+
+            const days = Math.floor(gap / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+
+            const countdownEl = document.getElementById('countdown');
+            if (gap < 0) {
+                countdownEl.textContent = "🎉 北海道之旅進行中";
+            } else {
+                countdownEl.textContent = `🚀 倒數 ${days}天 ${hours}時 ${minutes}分`;
+            }
+        }
+
+        // On Window Load
+        window.onload = function () {
+            switchDay(1);
+            renderExpenses();
+            renderChecklist();
+            updateCountdown();
+            setInterval(updateCountdown, 60000);
+        }
+    </script>
+</body>
+</html>
